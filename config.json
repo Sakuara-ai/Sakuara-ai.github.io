@@ -33,9 +33,9 @@
     "bottomText":"❤️ 转载文章请注明出处，谢谢！❤️",
     "ogImage":"https://cdn.jsdelivr.net/gh/Meekdai/meekdai.github.io/logo64.jpg",
     "primerCSS":"<link href='...primer.css' rel='stylesheet' />",
-    "needComment":1
+    "needComment":1,
 
-     "lived2D":1,   #是否开启二次元娘
+    "lived2D":1,   #是否开启二次元娘
     "lived2D_script":"<script src='https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js'></script><script src='https://cdn.jsdelivr.net/npm/jquery-ui@1.14.1/dist/jquery-ui.min.js'></script><script src='https://cdn.jsdelivr.net/gh/hst1189/live2d-widget/autoload.js'></script>",
 
     "sakuraPlus":1,  #是否开启樱花飘落
