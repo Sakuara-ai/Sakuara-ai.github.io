@@ -16,6 +16,7 @@
     "exlink": { "music": "https://music.xxx.com" },
     "commentLabelColor": "#006b75",
     "yearColorList": ["#bc4c00", "#0969da"],
+    
     "i18n": "CN",
     "UTC": 8,
     "themeMode": "manual",
