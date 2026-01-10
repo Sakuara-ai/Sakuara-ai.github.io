@@ -2,8 +2,11 @@
     "title":"sXmon",
     "subTitle":"无人识我来时路,恰似孤山起了雾.",
     "avatarUrl":"https://avatars.githubusercontent.com/u/175272353?v=4",
-    "GMEEK_VERSION":"last"
-   
+    "GMEEK_VERSION":"last",
+    
+    ↑ 以上是必须字段
+    ↓ 以下是自定义字段，可以选择添加
+    
     "displayTitle":"sXmon",
     "homeUrl":"http://blog.xxx.com",
     "faviconUrl":"https://avatars.githubusercontent.com/u/175272353?v=4",
