@@ -22,7 +22,7 @@
     "nightTheme":"dark_colorblind",
     "urlMode":"issue",
     "style":".avatar-user{margin-right:10px!important;}", 
-    "indexStyle":".Header-item--full{flex:none!important;}",
+    "indexStyle":"<style>.Header-item--full{flex:none!important;}</style>",
     "bottomText":"❤️ 转载文章请注明出处，谢谢！❤️",
     "showPostSource":0,
     "needComment":1
