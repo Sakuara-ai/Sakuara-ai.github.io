@@ -3,7 +3,6 @@
     "subTitle":"无人识我来时路,恰似孤山起了雾.",
     "avatarUrl":"https://avatars.githubusercontent.com/u/175272353?v=4",
     "GMEEK_VERSION":"last",
-    
     "displayTitle":"sXmon",
     "homeUrl":"https://sxm18.de5.net/",
     "faviconUrl":"https://avatars.githubusercontent.com/u/175272353?v=4",
@@ -22,16 +21,9 @@
     "dayTheme":"light",
     "nightTheme":"dark_colorblind",
     "urlMode":"issue",
-    "style":"",
-    "script":"",
-    "head":"",
-    "allHead":"",
-    "indexStyle":"",
-    "indexScript":"",
-    "showPostSource":0,
-    "rssSplit":"sentence",
+    "style":".avatar-user{margin-right:10px!important;}", 
+    "indexStyle":".Header-item--full{flex:none!important;}",
     "bottomText":"❤️ 转载文章请注明出处，谢谢！❤️",
-    "ogImage":"https://cdn.jsdelivr.net/gh/Meekdai/meekdai.github.io/logo64.jpg",
-    "primerCSS":"<link href='...primer.css' rel='stylesheet' />",
+    "showPostSource":0,
     "needComment":1
 }
