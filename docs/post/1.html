@@ -35,7 +35,7 @@
 <meta property="og:url" content="https://sxm18.de5.net//post/1.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/175272353?v=4">
 <title>Vol.1 Gmeek建站教程--基础篇</title>
-<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
 
 
 </head>
@@ -102,8 +102,9 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <h2>二、超清晰安装流程</h2>
 <h3>Step 1：一键创建你的博客库</h3>
 <p>直接通过 Gmeek 官方模板创建仓库，推荐命名为 <code class="notranslate">你的用户名.github.io</code>。此举可极大简化环境搭建，模板结构见下：</p>
-<div class="highlight highlight-text-md"><pre class="notranslate">// backup/这是Gmeek模板仓库.md
-通过这个模板创建库，可以大大减少部署Gmeek博客的配置步骤。</pre></div>
+<pre lang="markdown" class="notranslate"><code class="notranslate">// backup/这是Gmeek模板仓库.md
+通过这个模板创建库，可以大大减少部署Gmeek博客的配置步骤。
+</code></pre>
 <p>点击“Use this template”一键新建，再也不会踩坑！</p>
 <h3>Step 2：GitHub Pages 配置</h3>
 <p>在仓库的 <strong>Settings &gt; Pages</strong> 里，将 Build &amp; Deployment 的 Source 指定为 Github Actions，这样才能激活自动构建流。无需关心底层静态文件部署，Gmeek 会全自动操作。</p>
@@ -118,100 +119,105 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <h2>三、核心源码拆解与高级定制</h2>
 <h3>1. 主题与前端自定义</h3>
 <p>Gmeek 博客的核心页面 HTML（如下，可直接修改，体验不一样的风格）：</p>
-<div class="highlight highlight-text-html-basic"><pre class="notranslate"><span class="pl-c">&lt;!-- docs/index.html --&gt;</span>
-<span class="pl-c1">&lt;!DOCTYPE html<span class="pl-kos">&gt;</span></span>
-<span class="pl-kos">&lt;</span><span class="pl-ent">html</span> <span class="pl-c1">data-color-mode</span>="<span class="pl-s">light</span>" <span class="pl-c1">data-dark-theme</span>="<span class="pl-s">dark</span>" <span class="pl-c1">data-light-theme</span>="<span class="pl-s">light</span>" <span class="pl-c1">lang</span>="<span class="pl-s">zh-CN</span>"<span class="pl-kos">&gt;</span>
-<span class="pl-kos">&lt;</span><span class="pl-ent">head</span><span class="pl-kos">&gt;</span>
-    <span class="pl-kos">&lt;</span><span class="pl-ent">meta</span> <span class="pl-c1">charset</span>="<span class="pl-s">utf-8</span>" <span class="pl-kos">/&gt;</span>
-    <span class="pl-kos">&lt;</span><span class="pl-ent">meta</span> <span class="pl-c1">name</span>="<span class="pl-s">viewport</span>" <span class="pl-c1">content</span>="<span class="pl-s">width=device-width,initial-scale=1.0</span>"<span class="pl-kos">&gt;</span>
-    <span class="pl-kos">&lt;</span><span class="pl-ent">link</span> <span class="pl-c1">href</span>="<span class="pl-s">//cdn.staticfile.org/Primer/21.0.7/primer.css</span>" <span class="pl-c1">rel</span>="<span class="pl-s">stylesheet</span>" <span class="pl-kos">/&gt;</span>
-    <span class="pl-kos">&lt;</span><span class="pl-ent">link</span> <span class="pl-c1">rel</span>="<span class="pl-s">icon</span>" <span class="pl-c1">href</span>="<span class="pl-s">https://github.githubassets.com/favicons/favicon.svg</span>"<span class="pl-kos">&gt;</span>
-    <span class="pl-c">&lt;!-- 主题切换脚本 --&gt;</span>
-    <span class="pl-kos">&lt;</span><span class="pl-ent">script</span><span class="pl-kos">&gt;</span>
-    <span class="pl-k">if</span><span class="pl-kos">(</span><span class="pl-s1">localStorage</span><span class="pl-kos">.</span><span class="pl-en">getItem</span><span class="pl-kos">(</span><span class="pl-s">"meek_theme"</span><span class="pl-kos">)</span><span class="pl-c1">==</span><span class="pl-c1">null</span><span class="pl-kos">)</span><span class="pl-kos">{</span><span class="pl-kos">}</span>
-    <span class="pl-k">else</span> <span class="pl-k">if</span><span class="pl-kos">(</span><span class="pl-s1">localStorage</span><span class="pl-kos">.</span><span class="pl-en">getItem</span><span class="pl-kos">(</span><span class="pl-s">"meek_theme"</span><span class="pl-kos">)</span><span class="pl-c1">==</span><span class="pl-s">"dark"</span><span class="pl-kos">)</span><span class="pl-kos">{</span><span class="pl-smi">document</span><span class="pl-kos">.</span><span class="pl-en">getElementsByTagName</span><span class="pl-kos">(</span><span class="pl-s">"html"</span><span class="pl-kos">)</span><span class="pl-kos">[</span><span class="pl-c1">0</span><span class="pl-kos">]</span><span class="pl-kos">.</span><span class="pl-c1">attributes</span><span class="pl-kos">.</span><span class="pl-en">getNamedItem</span><span class="pl-kos">(</span><span class="pl-s">"data-color-mode"</span><span class="pl-kos">)</span><span class="pl-kos">.</span><span class="pl-c1">value</span><span class="pl-c1">=</span><span class="pl-s">"dark"</span><span class="pl-kos">;</span><span class="pl-kos">}</span>
-    <span class="pl-k">else</span> <span class="pl-k">if</span><span class="pl-kos">(</span><span class="pl-s1">localStorage</span><span class="pl-kos">.</span><span class="pl-en">getItem</span><span class="pl-kos">(</span><span class="pl-s">"meek_theme"</span><span class="pl-kos">)</span><span class="pl-c1">==</span><span class="pl-s">"light"</span><span class="pl-kos">)</span><span class="pl-kos">{</span><span class="pl-smi">document</span><span class="pl-kos">.</span><span class="pl-en">getElementsByTagName</span><span class="pl-kos">(</span><span class="pl-s">"html"</span><span class="pl-kos">)</span><span class="pl-kos">[</span><span class="pl-c1">0</span><span class="pl-kos">]</span><span class="pl-kos">.</span><span class="pl-c1">attributes</span><span class="pl-kos">.</span><span class="pl-en">getNamedItem</span><span class="pl-kos">(</span><span class="pl-s">"data-color-mode"</span><span class="pl-kos">)</span><span class="pl-kos">.</span><span class="pl-c1">value</span><span class="pl-c1">=</span><span class="pl-s">"light"</span><span class="pl-kos">;</span><span class="pl-kos">}</span>
-    <span class="pl-kos">&lt;/</span><span class="pl-ent">script</span><span class="pl-kos">&gt;</span>
-    <span class="pl-kos">&lt;</span><span class="pl-ent">meta</span> <span class="pl-c1">name</span>="<span class="pl-s">description</span>" <span class="pl-c1">content</span>="<span class="pl-s">Blog description</span>"<span class="pl-kos">&gt;</span>
-    <span class="pl-kos">&lt;</span><span class="pl-ent">title</span><span class="pl-kos">&gt;</span>Blog Title<span class="pl-kos">&lt;/</span><span class="pl-ent">title</span><span class="pl-kos">&gt;</span>
-<span class="pl-kos">&lt;/</span><span class="pl-ent">head</span><span class="pl-kos">&gt;</span>
-<span class="pl-c">&lt;!-- 页面样式可随意自定义 --&gt;</span>
-<span class="pl-kos">&lt;</span><span class="pl-ent">style</span><span class="pl-kos">&gt;</span>
-    <span class="pl-ent">body</span>{<span class="pl-c1">box-sizing</span><span class="pl-kos">:</span> border-box;<span class="pl-c1">min-width</span><span class="pl-kos">:</span> <span class="pl-c1">200<span class="pl-smi">px</span></span>;<span class="pl-c1">max-width</span><span class="pl-kos">:</span> <span class="pl-c1">900<span class="pl-smi">px</span></span>;<span class="pl-c1">margin</span><span class="pl-kos">:</span> <span class="pl-c1">20<span class="pl-smi">px</span></span> auto;<span class="pl-c1">padding</span><span class="pl-kos">:</span> <span class="pl-c1">45<span class="pl-smi">px</span></span>;<span class="pl-c1">font-size</span><span class="pl-kos">:</span> <span class="pl-c1">16<span class="pl-smi">px</span></span>;<span class="pl-c1">font-family</span><span class="pl-kos">:</span> sans-serif;<span class="pl-c1">line-height</span><span class="pl-kos">:</span> <span class="pl-c1">1.25</span>;}
-    <span class="pl-kos">#</span><span class="pl-c1">footer</span> {<span class="pl-c1">margin-top</span><span class="pl-kos">:</span><span class="pl-c1">64<span class="pl-smi">px</span></span>; <span class="pl-c1">text-align</span><span class="pl-kos">:</span> center;<span class="pl-c1">font-size</span><span class="pl-kos">:</span> small;}
-<span class="pl-kos">&lt;/</span><span class="pl-ent">style</span><span class="pl-kos">&gt;</span></pre></div>
+<pre lang="html" class="notranslate"><code class="notranslate">&lt;!-- docs/index.html --&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8" /&gt;
+    &lt;meta name="viewport" content="width=device-width,initial-scale=1.0"&gt;
+    &lt;link href="//cdn.staticfile.org/Primer/21.0.7/primer.css" rel="stylesheet" /&gt;
+    &lt;link rel="icon" href="https://github.githubassets.com/favicons/favicon.svg"&gt;
+    &lt;!-- 主题切换脚本 --&gt;
+    &lt;script&gt;
+    if(localStorage.getItem("meek_theme")==null){}
+    else if(localStorage.getItem("meek_theme")=="dark"){document.getElementsByTagName("html")[0].attributes.getNamedItem("data-color-mode").value="dark";}
+    else if(localStorage.getItem("meek_theme")=="light"){document.getElementsByTagName("html")[0].attributes.getNamedItem("data-color-mode").value="light";}
+    &lt;/script&gt;
+    &lt;meta name="description" content="Blog description"&gt;
+    &lt;title&gt;Blog Title&lt;/title&gt;
+&lt;/head&gt;
+&lt;!-- 页面样式可随意自定义 --&gt;
+&lt;style&gt;
+    body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+    #footer {margin-top:64px; text-align: center;font-size: small;}
+&lt;/style&gt;
+</code></pre>
 <h3>2. 博客文章自动生成机制</h3>
 <p>发 issue 自动生成博客页面，文章列表、标签渲染等前端内容均由 Gmeek 动态生产，对应源码示例：</p>
-<div class="highlight highlight-text-html-basic"><pre class="notranslate"><span class="pl-c">&lt;!-- docs/post/zhe-shi-Gmeek-mo-ban-cang-ku.html --&gt;</span>
-<span class="pl-kos">&lt;</span><span class="pl-ent">div</span> <span class="pl-c1">class</span>="<span class="pl-s">markdown-body</span>" <span class="pl-c1">id</span>="<span class="pl-s">postBody</span>"<span class="pl-kos">&gt;</span><span class="pl-kos">&lt;</span><span class="pl-ent">p</span><span class="pl-kos">&gt;</span>通过这个模板创建库，可以大大减少部署Gmeek博客的配置步骤。<span class="pl-kos">&lt;/</span><span class="pl-ent">p</span><span class="pl-kos">&gt;</span><span class="pl-kos">&lt;/</span><span class="pl-ent">div</span><span class="pl-kos">&gt;</span>
-<span class="pl-c">&lt;!-- 评论按钮自动集成 --&gt;</span>
-<span class="pl-kos">&lt;</span><span class="pl-ent">button</span> <span class="pl-c1">class</span>="<span class="pl-s">btn btn-block</span>" <span class="pl-c1">type</span>="<span class="pl-s">button</span>" <span class="pl-c1">onclick</span>="<span class="pl-s">openComments()</span>" <span class="pl-c1">id</span>="<span class="pl-s">cmButton</span>"<span class="pl-kos">&gt;</span>评论<span class="pl-kos">&lt;/</span><span class="pl-ent">button</span><span class="pl-kos">&gt;</span>
-<span class="pl-kos">&lt;</span><span class="pl-ent">div</span> <span class="pl-c1">class</span>="<span class="pl-s">comments</span>" <span class="pl-c1">id</span>="<span class="pl-s">comments</span>"<span class="pl-kos">&gt;</span><span class="pl-kos">&lt;/</span><span class="pl-ent">div</span><span class="pl-kos">&gt;</span></pre></div>
+<pre lang="html" class="notranslate"><code class="notranslate">&lt;!-- docs/post/zhe-shi-Gmeek-mo-ban-cang-ku.html --&gt;
+&lt;div class="markdown-body" id="postBody"&gt;&lt;p&gt;通过这个模板创建库，可以大大减少部署Gmeek博客的配置步骤。&lt;/p&gt;&lt;/div&gt;
+&lt;!-- 评论按钮自动集成 --&gt;
+&lt;button class="btn btn-block" type="button" onclick="openComments()" id="cmButton"&gt;评论&lt;/button&gt;
+&lt;div class="comments" id="comments"&gt;&lt;/div&gt;
+</code></pre>
 <h3>3. 评论系统自动挂载（utterances）</h3>
 <p>无需人工部署，Gmeek 已集成 utterances，只需授权 App 即可启用评论：</p>
-<div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-c">// 评论挂载脚本片段</span>
-<span class="pl-k">function</span> <span class="pl-en">openComments</span><span class="pl-kos">(</span><span class="pl-kos">)</span> <span class="pl-kos">{</span>
-    <span class="pl-k">var</span> <span class="pl-s1">script</span><span class="pl-c1">=</span><span class="pl-smi">document</span><span class="pl-kos">.</span><span class="pl-en">createElement</span><span class="pl-kos">(</span><span class="pl-s">"script"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-    <span class="pl-s1">script</span><span class="pl-kos">.</span><span class="pl-en">setAttribute</span><span class="pl-kos">(</span><span class="pl-s">"src"</span><span class="pl-kos">,</span><span class="pl-s">"https://utteranc.es/client.js"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-    <span class="pl-s1">script</span><span class="pl-kos">.</span><span class="pl-en">setAttribute</span><span class="pl-kos">(</span><span class="pl-s">"repo"</span><span class="pl-kos">,</span><span class="pl-s">"你的用户名/github.io"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-    <span class="pl-s1">script</span><span class="pl-kos">.</span><span class="pl-en">setAttribute</span><span class="pl-kos">(</span><span class="pl-s">"issue-term"</span><span class="pl-kos">,</span><span class="pl-s">"title"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-    <span class="pl-s1">script</span><span class="pl-kos">.</span><span class="pl-en">setAttribute</span><span class="pl-kos">(</span><span class="pl-s">"theme"</span><span class="pl-kos">,</span><span class="pl-s1">localStorage</span><span class="pl-kos">.</span><span class="pl-en">getItem</span><span class="pl-kos">(</span><span class="pl-s">"meek_theme"</span><span class="pl-kos">)</span><span class="pl-c1">==</span><span class="pl-s">"dark"</span>?<span class="pl-s">"dark-blue"</span>:<span class="pl-s">"github-light"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-    <span class="pl-s1">script</span><span class="pl-kos">.</span><span class="pl-en">setAttribute</span><span class="pl-kos">(</span><span class="pl-s">"crossorigin"</span><span class="pl-kos">,</span><span class="pl-s">"anonymous"</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-    <span class="pl-s1">script</span><span class="pl-kos">.</span><span class="pl-en">setAttribute</span><span class="pl-kos">(</span><span class="pl-s">"async"</span><span class="pl-kos">,</span><span class="pl-s">""</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-    <span class="pl-smi">document</span><span class="pl-kos">.</span><span class="pl-en">getElementById</span><span class="pl-kos">(</span><span class="pl-s">"comments"</span><span class="pl-kos">)</span><span class="pl-kos">.</span><span class="pl-en">appendChild</span><span class="pl-kos">(</span><span class="pl-s1">script</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-<span class="pl-kos">}</span></pre></div>
+<pre lang="js" class="notranslate"><code class="notranslate">// 评论挂载脚本片段
+function openComments() {
+    var script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","你的用户名/github.io");
+    script.setAttribute("issue-term","title");
+    script.setAttribute("theme",localStorage.getItem("meek_theme")=="dark"?"dark-blue":"github-light");
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    document.getElementById("comments").appendChild(script);
+}
+</code></pre>
 <h3>4. 博客运行天数脚本、版权信息自动显示</h3>
-<div class="highlight highlight-source-js"><pre class="notranslate"><span class="pl-c">// 自动计算网站运行天数</span>
-<span class="pl-k">if</span><span class="pl-kos">(</span><span class="pl-s">""</span><span class="pl-c1">!=</span><span class="pl-s">""</span><span class="pl-kos">)</span><span class="pl-kos">{</span>
-    <span class="pl-k">var</span> <span class="pl-s1">now</span><span class="pl-c1">=</span><span class="pl-k">new</span> <span class="pl-v">Date</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-    <span class="pl-k">var</span> <span class="pl-s1">startSite</span><span class="pl-c1">=</span><span class="pl-k">new</span> <span class="pl-v">Date</span><span class="pl-kos">(</span><span class="pl-s">""</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-    <span class="pl-k">var</span> <span class="pl-s1">diffDay</span><span class="pl-c1">=</span><span class="pl-v">Math</span><span class="pl-kos">.</span><span class="pl-en">floor</span><span class="pl-kos">(</span><span class="pl-kos">(</span><span class="pl-s1">now</span><span class="pl-kos">.</span><span class="pl-en">getTime</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-c1">-</span><span class="pl-s1">startSite</span><span class="pl-kos">.</span><span class="pl-en">getTime</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">)</span><span class="pl-c1">/</span><span class="pl-kos">(</span><span class="pl-c1">1000</span><span class="pl-c1">*</span><span class="pl-c1">60</span><span class="pl-c1">*</span><span class="pl-c1">60</span><span class="pl-c1">*</span><span class="pl-c1">24</span><span class="pl-kos">)</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-    <span class="pl-smi">document</span><span class="pl-kos">.</span><span class="pl-en">getElementById</span><span class="pl-kos">(</span><span class="pl-s">"year"</span><span class="pl-kos">)</span><span class="pl-kos">.</span><span class="pl-c1">innerHTML</span><span class="pl-c1">=</span><span class="pl-s1">now</span><span class="pl-kos">.</span><span class="pl-en">getFullYear</span><span class="pl-kos">(</span><span class="pl-kos">)</span><span class="pl-kos">;</span>
-    <span class="pl-smi">document</span><span class="pl-kos">.</span><span class="pl-en">getElementById</span><span class="pl-kos">(</span><span class="pl-s">"runday"</span><span class="pl-kos">)</span><span class="pl-kos">.</span><span class="pl-c1">innerHTML</span><span class="pl-c1">=</span><span class="pl-s">" • "</span><span class="pl-c1">+</span><span class="pl-s">"网站运行"</span><span class="pl-c1">+</span><span class="pl-s1">diffDay</span><span class="pl-c1">+</span><span class="pl-s">"天"</span><span class="pl-c1">+</span><span class="pl-s">" • "</span><span class="pl-kos">;</span>
-<span class="pl-kos">}</span></pre></div>
+<pre lang="js" class="notranslate"><code class="notranslate">// 自动计算网站运行天数
+if(""!=""){
+    var now=new Date();
+    var startSite=new Date("");
+    var diffDay=Math.floor((now.getTime()-startSite.getTime())/(1000*60*60*24));
+    document.getElementById("year").innerHTML=now.getFullYear();
+    document.getElementById("runday").innerHTML=" • "+"网站运行"+diffDay+"天"+" • ";
+}
+</code></pre>
 <hr>
 <h2>四、config.json 配置详解与高级技巧</h2>
 <p><code class="notranslate">config.json</code> 控制博客的全部参数，格式如下，建议每次修改后都全局重构：</p>
-<div class="highlight highlight-source-json"><pre class="notranslate">{
-    <span class="pl-ent">"title"</span>: <span class="pl-s"><span class="pl-pds">"</span>你的博客标题<span class="pl-pds">"</span></span>,
-    <span class="pl-ent">"subTitle"</span>: <span class="pl-s"><span class="pl-pds">"</span>个性签名或名言<span class="pl-pds">"</span></span>,
-    <span class="pl-ent">"avatarUrl"</span>: <span class="pl-s"><span class="pl-pds">"</span>https://github.githubassets.com/favicons/favicon.svg<span class="pl-pds">"</span></span>,
-    <span class="pl-ent">"GMEEK_VERSION"</span>: <span class="pl-s"><span class="pl-pds">"</span>last<span class="pl-pds">"</span></span>,
+<pre lang="json" class="notranslate"><code class="notranslate">{
+    "title": "你的博客标题",
+    "subTitle": "个性签名或名言",
+    "avatarUrl": "https://github.githubassets.com/favicons/favicon.svg",
+    "GMEEK_VERSION": "last",
 
-    <span class="pl-ii">↑ 以上是必须字段</span>
-    <span class="pl-ii">↓ 以下是自定义字段，可以选择添加</span>
+    ↑ 以上是必须字段
+    ↓ 以下是自定义字段，可以选择添加
 
-    <span class="pl-ent">"displayTitle"</span>: <span class="pl-s"><span class="pl-pds">"</span>主页面展示的标题<span class="pl-pds">"</span></span>,
-    <span class="pl-ent">"homeUrl"</span>: <span class="pl-s"><span class="pl-pds">"</span>http://blog.xxx.com<span class="pl-pds">"</span></span>,
-    <span class="pl-ent">"faviconUrl"</span>: <span class="pl-s"><span class="pl-pds">"</span>https://github.githubassets.com/favicons/favicon.svg<span class="pl-pds">"</span></span>,
-    <span class="pl-ent">"email"</span>: <span class="pl-s"><span class="pl-pds">"</span>xxx@xxx.com<span class="pl-pds">"</span></span>,
-    <span class="pl-ent">"startSite"</span>: <span class="pl-s"><span class="pl-pds">"</span>01/01/2024<span class="pl-pds">"</span></span>,
-    <span class="pl-ent">"filingNum"</span>: <span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>,
-    <span class="pl-ent">"onePageListNum"</span>: <span class="pl-c1">30</span>,
-    <span class="pl-ent">"singlePage"</span>: [<span class="pl-s"><span class="pl-pds">"</span>about<span class="pl-pds">"</span></span>],
-    <span class="pl-ent">"iconList"</span>: { <span class="pl-ent">"music"</span>: <span class="pl-s"><span class="pl-pds">"</span>M0 ...<span class="pl-pds">"</span></span> },
-    <span class="pl-ent">"exlink"</span>: { <span class="pl-ent">"music"</span>: <span class="pl-s"><span class="pl-pds">"</span>https://music.xxx.com<span class="pl-pds">"</span></span> },
-    <span class="pl-ent">"commentLabelColor"</span>: <span class="pl-s"><span class="pl-pds">"</span>#006b75<span class="pl-pds">"</span></span>,
-    <span class="pl-ent">"yearColorList"</span>: [<span class="pl-s"><span class="pl-pds">"</span>#bc4c00<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>#0969da<span class="pl-pds">"</span></span>],
-    <span class="pl-ent">"i18n"</span>: <span class="pl-s"><span class="pl-pds">"</span>CN<span class="pl-pds">"</span></span>,
-    <span class="pl-ent">"UTC"</span>: <span class="pl-c1">8</span>,
-    <span class="pl-ent">"themeMode"</span>: <span class="pl-s"><span class="pl-pds">"</span>manual<span class="pl-pds">"</span></span>,
-    <span class="pl-ent">"dayTheme"</span>: <span class="pl-s"><span class="pl-pds">"</span>light<span class="pl-pds">"</span></span>,
-    <span class="pl-ent">"nightTheme"</span>: <span class="pl-s"><span class="pl-pds">"</span>dark_colorblind<span class="pl-pds">"</span></span>,
-    <span class="pl-ent">"urlMode"</span>: <span class="pl-s"><span class="pl-pds">"</span>pinyin<span class="pl-pds">"</span></span>,
-    <span class="pl-ent">"style"</span>: <span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>,
-    <span class="pl-ent">"script"</span>: <span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>,
-    <span class="pl-ent">"head"</span>: <span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>,
-    <span class="pl-ent">"allHead"</span>: <span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>,
-    <span class="pl-ent">"indexStyle"</span>: <span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>,
-    <span class="pl-ent">"indexScript"</span>: <span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>,
-    <span class="pl-ent">"showPostSource"</span>: <span class="pl-c1">0</span>,
-    <span class="pl-ent">"rssSplit"</span>: <span class="pl-s"><span class="pl-pds">"</span>sentence<span class="pl-pds">"</span></span>,
-    <span class="pl-ent">"bottomText"</span>: <span class="pl-s"><span class="pl-pds">"</span>转载请注明出处<span class="pl-pds">"</span></span>,
-    <span class="pl-ent">"ogImage"</span>: <span class="pl-s"><span class="pl-pds">"</span>https://cdn.jsdelivr.net/gh/Meekdai/meekdai.github.io/logo64.jpg<span class="pl-pds">"</span></span>,
-    <span class="pl-ent">"primerCSS"</span>: <span class="pl-s"><span class="pl-pds">"</span>&lt;link href='...primer.css' rel='stylesheet' /&gt;<span class="pl-pds">"</span></span>,
-    <span class="pl-ent">"needComment"</span>: <span class="pl-c1">1</span>
-}</pre></div>
+    "displayTitle": "主页面展示的标题",
+    "homeUrl": "http://blog.xxx.com",
+    "faviconUrl": "https://github.githubassets.com/favicons/favicon.svg",
+    "email": "xxx@xxx.com",
+    "startSite": "01/01/2024",
+    "filingNum": "",
+    "onePageListNum": 30,
+    "singlePage": ["about"],
+    "iconList": { "music": "M0 ..." },
+    "exlink": { "music": "https://music.xxx.com" },
+    "commentLabelColor": "#006b75",
+    "yearColorList": ["#bc4c00", "#0969da"],
+    "i18n": "CN",
+    "UTC": 8,
+    "themeMode": "manual",
+    "dayTheme": "light",
+    "nightTheme": "dark_colorblind",
+    "urlMode": "pinyin",
+    "style": "",
+    "script": "",
+    "head": "",
+    "allHead": "",
+    "indexStyle": "",
+    "indexScript": "",
+    "showPostSource": 0,
+    "rssSplit": "sentence",
+    "bottomText": "转载请注明出处",
+    "ogImage": "https://cdn.jsdelivr.net/gh/Meekdai/meekdai.github.io/logo64.jpg",
+    "primerCSS": "&lt;link href='...primer.css' rel='stylesheet' /&gt;",
+    "needComment": 1
+}
+</code></pre>
 <h4>关键配置表</h4>
 <markdown-accessiblity-table><table role="table">
 <thead>
